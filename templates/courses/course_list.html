@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}{{user.username}}'s Courses{% endblock %}
+
+{% block content %}
+<div>
+    {% if context is not None %}
+    <br>
+    <ul>
+        {% for item in context %}
+            <h3>
+                <div>
+                    <li>
+                        <a href="/project/ass_list/{{item.course_id.slug}}">{{item.course_id.title}}</a>
+                    </li>
+
+                </div>
+            </h3>
+            <br>
+            <hr>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <h2 style="text-align:center; color:red">You are not enrolled in any course for this semester</h2>
+    {% endif %}
+
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}{{user.username}}'s Submission{% endblock %}
+
+{% block content %}
+<div>
+    <h2 style="color:gray; text-align:center;">{{ass.course.title}}</h2>
+    <h4 style="text-align:center;">{{ass.types}}</h4>
+    <h2 style="text-align:center">{{ass.title}}</h2>
+    <hr><br>
+    <div style="float:left;width:30%;height: 250px;border-style: groove;">
+        <h3>Marks : {{ass.total_marks}}</h3>
+        {% if ass.files %}
+        <h3>File : <a href="{{ ass.files.url }}" target="_blank">{{ass.title}}</a></h3>
+        {% endif %}
+        <h3 style="display:inline; color:gray;">Deadline:</h3>
+        <h5 style="display:inline;">{{ass.end_date}}</h5>
+    </div>
+    <div style="float:right; width:70%;height: 250px; border-style: groove;">
+        <h4 style="color:gray; text-align:center;">Description</h4>
+        <p>{{ass.description}}</p>
+    </div>
+
+</div>
+<div style="text-align:center; width:100% ;">
+<form method="post"  enctype="multipart/form-data"> {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" style="color:green;">Submit</button>
+</form>
+</div>
+
+{% endblock %}

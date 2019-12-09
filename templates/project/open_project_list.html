@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %} {{ curr_year }}'s Assignment{% endblock %}
+
+{% block content %}
+    <br>
+    <div style="text-align:center">
+        <h2 style="color:Gray">{{curr_year}} - Open project For Everyone</h2>
+    </div>
+    <!--{%if types %}
+    <div style="text-align:right">
+        <a href="/project/create_ass/{{course.slug}}"><button>Create New Project</button></a>
+    </div>
+    {% endif %}-->
+    <hr><hr><br>
+
+    {%if ass is not None %}
+    <div>
+    <table style="width:90%; border: 1px solid black;" align="center">
+        <tr>
+            <th style="border:1px solid black; text-align:center;font-size:30px; background-color:lightblue;"> Assignment</th>
+            <th style="border:1px solid black; text-align:center;font-size:30px; background-color:lightblue;"> Deadline</th>
+        </tr>
+        {% for item in ass %}
+        <tr>
+            <td style="border: 1px solid black; font-size:30px;"><a href="/project/view_ass/{{item.slug}}">{{item.title}}</a></td>
+            <td style="border: 1px solid black; font-size:30px;">{{item.end_date}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+
+    {% else %}
+        <h2 style="text-align:center; color:green">&#129395; No Assignment in this Year Yet</h2><br>
+    <div style="text-align:center"><a href="/courses/"><button>Go to courses</button></a></div>
+    {% endif %}
+
+
+
+{% endblock %}

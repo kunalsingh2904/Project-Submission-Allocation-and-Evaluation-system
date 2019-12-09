@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}{{user.username}}'s Assignment{% endblock %}
+
+{% block content %}
+    <hr>
+    <div>
+    <h2 style="text-align:center;color:gray;">{{ass.course.title}}</h2>
+    <h2 style="text-align:center;">{{ass.title}}</h2>
+    <h3 >Total Marks : {{ass.total_marks}}</h3>
+    <hr>
+
+    <form method="post"  enctype="multipart/form-data"> {% csrf_token %}
+        {{ form|crispy }}
+        <div style="text-align:center;"><button type="submit" style="color:green;">Submit</button></div>
+    </form>
+
+
+
+
+
+{% endblock %}

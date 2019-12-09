@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}{{user.username}}'s Assignment{% endblock %}
+{% block content %}
+    <div>
+        <h2 style="text-align:center;">{{ass.course.title}}</h2>
+        <h2 style="text-align:center;">{{ass.course.course_id}}</h2>
+        <div style="float:left; width:50%; text-align:center; color:gray;"><h3>{{ass.types}}</h3></div>
+        <div style="float:right; width:50%; text-align:center; color:gray;"><h3>{{ass.teach_by}}</h3></div>
+    </div><br><br>
+    <div style="width:70%; margin-left: auto;margin-right: auto;" align="center">
+        <h2 style="color:#9966ff;">{{ass.title}}</h2>
+        <h2>Total Marks: {{ass.total_marks}}</h2>
+    </div>
+    <div style="border-style: groove; width:70%; margin-left: auto;margin-right: auto; background-color:#99ccff;" align="center">
+        <h2 style="color:green;">Your Submission</h2>
+        {% if sub is not None %}
+        <h3><a href="{{ sub.file.url }}" target="_blank">{{user.username}}'s submission</a></h3>
+        {% if sub.status %}
+        <h3>Marks obtained: {{sub.marks}} </h3>
+        {% else %}
+        <h3>Your submission have not checked yet</h3>
+        {% endif %}
+        {% else %}
+        <h3>You didn't submit the assignment</h3>
+        {% endif %}
+    </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Main page{% endblock %}</title>
+    <link rel="shortcut icon" href="{%  static 'img/favicon.ico' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body style="background-color:#f2f2f2;">
+<!--  style="position: fixed; top=0; width: 100%; "-->
+<nav class="navbar navbar-expand-lg navbar-light bg-primary" style="position: fixed; top=0; width: 100%;">
+    <a class="navbar-brand mb-0 h1" href="/courses/" style="color:Tomato;">Moodle</a>
+    <form class="form-inline my-2 my-lg-0"  action="/search">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q">
+            <button class="btn btn-outline-dark my-2 my-sm-0" type="submit"  style="color:Tomato;">Search</button>
+    </form>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                {% if request.user.is_superuser %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/"  style="color:Tomato;"><b>Admin</b></a>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/project/open_project"  style="color:Tomato;"><b>Project</b></a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/courses/"  style="color:Tomato;"><b>Courses</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contact/" style="color:Tomato;"><b>Contact</b></a>
+                </li>
+                {% if request.user.is_authenticated %}
+                <li class="nav-item dropdown ">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <b  style="color:Tomato;">Profile</b>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="right: 0; left: auto;">
+                        <a class="dropdown-item" href="/users/profile/">View Profile</a>
+                        <a class="dropdown-item" href="/users/profile/">Update Profile</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/users/delete_account/">Delete Account</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/users/logout/">Logout</a>
+                    </div>
+                </li>
+                {% endif %}
+                {% if not request.user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/users/login/"  style="color:Tomato;"><b>Login</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/users/register/"  style="color:Tomato;"><b>Register</b></a>
+                </li>
+                {% endif %}
+
+            </ul>
+
+
+    </div>
+</nav>
+<br><hr>
+
+
+{% block content %}content goes here {% endblock %}
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

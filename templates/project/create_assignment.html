@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{user}}'s Assignment{% endblock %}
+
+{% block content %}
+
+<div  style="width:90%; margin-left: auto;margin-right: auto; ">
+<form method="post"  enctype="multipart/form-data"> {% csrf_token %}     <!-- action can be '/blog/create/new/' -->
+    {{ form|crispy }}
+    {% if update %}
+        <div style="text-align:center;"><button type="submit" style="color:green;">Update</button></div>
+    {% else %}
+        <div style="text-align:center;"><button type="submit"  style="color:green;">Create</button></div>
+    {% endif %}
+</form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}{{user.username}}'s Assignment{% endblock %}
+
+{% block content %}
+    <hr>
+    <div>
+    <h2 style="text-align:center;color:blue;">{{ass.course.title}}</h2>
+    <h2 style="text-align:center;color:blue;">{{ass.title}}</h2>
+    <div style="float:left; width:50%;"><h3 style="text-align:center; color:gray;">{{ass.types}}</h3></div>
+    <div style="float:right; width:50%;"><h3 style="text-align:center;color:gray; ">{{ass.teach_by}}</h3></div>
+    </div><br><br>
+
+    <div>
+        <div style="float:left;width:30%;height: 250px;border-style: groove;">
+            <h3>Marks : {{ass.total_marks}}</h3>
+            {% if ass.files %}
+            <h3>File : <a href="{{ ass.files.url }}" target="_blank">{{ass.title}}</a></h3>
+            {% endif %}
+            <h3 style="display:inline; color:gray;">Deadline:</h3>
+            <h5 style="display:inline;">{{ass.end_date}}</h5>
+        </div>
+        <div style="float:right; width:70%;height: 250px; border-style: groove;">
+            <h4 style="color:gray; text-align:center;">Description</h4>
+            <p>{{ass.description}}</p>
+        </div>
+    </div>
+
+
+    <div style="text-align:center; width:100%;">
+        <br>
+    {% if type %}
+        <a href="/project/view_sub/{{ass.slug}}"><button>View submission</button></a>
+        <a href="/project/update_assignment/{{ass.slug}}"><button>Update Assignment</button></a>
+        <a href="/project/delete_assignment/{{ass.slug}}"><button>Delete Assignment</button></a>
+    {% else %}
+        {% if submit and update %}
+        <a href="/project/add_sub/{{ass.slug}}"><button style="color:green;">Update Submission</button></a>
+        {% elif submit  %}
+            <a href="/project/add_sub/{{ass.slug}}"><button style="color:green;">Add Submission</button></a>
+        {% else %}
+            <a href="/project/view_your_marks/{{ass.slug}}"><button style="color:green;">View your Submission</button></a>
+        {% endif %}
+    {% endif %}
+    </div>
+    <hr>
+
+    <div>
+        <div style="float:left;width:15%;"><h3>Comments:</h3></div>
+        <div style="float:right; width:85%;">
+            <form action="/project/add_comment/{{ ass.slug }}" >
+                <input name="comment" type="text" placeholder="Add public comment">
+                <button type="submit" style="color:green;">post</button>
+            </form>
+        </div>
+    </div>
+<br><br>
+    <div style="text-align:left;">
+        <br>
+        {% if comments %}
+        <ul>
+             {% for obj in comments %}
+                <li>
+                  <b>{{obj.user}}:</b>&nbsp;&nbsp;&nbsp; {{obj.comment }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  {% if request.user.is_staff or type %}
+                  <a href="/project/delete_comment/{{obj.assignment.slug}}/{{obj.slugs}}"><button style="color:red">Delete</button></a>
+                  {% endif %}
+                </li>
+             {% endfor %}
+        </ul>
+         {% endif %}
+    </div>
+
+
+
+{% endblock %}

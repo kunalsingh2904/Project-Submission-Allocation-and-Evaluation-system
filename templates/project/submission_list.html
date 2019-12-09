@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}{{user.username}}'s Assignment{% endblock %}
+
+{% block content %}
+    <br>
+    <div  style="text-align:center">
+        <h2>{{ass.course.title}}</h2>
+        <h2>{{ass.course.course_id}}</h2>
+
+    </div>
+    <hr><hr><br>
+    {%if sub is not None %}
+        <table style="width:80%; border: 1px solid black;" align="center">
+            <tr>
+                <th  style="border: 1px solid black; text-align:center;">Student username</th>
+                <th  style="border: 1px solid black; text-align:center;">Status</th>
+                <th  style="border: 1px solid black; text-align:center;">Marks</th>
+                <th  style="border: 1px solid black; text-align:center;">File</th>
+            </tr>
+            {% for item in sub %}
+            <tr>
+                <td  style="border: 1px solid black;"><a href="/project/view_submission/{{ass.slug}}/{{item.submit_by}}">{{item.submit_by}}</a></td>
+                <td  style="border: 1px solid black; text-align:center;font-size:30px;">{% if item.status %}&#10004; {% else %}&#10008;{% endif %}</td>
+                <td  style="border: 1px solid black;">{% if item.status %}{{item.marks}}{% endif %}</td>
+                <td  style="border: 1px solid black;"><a href="{{ item.file.url }}" target="_blank">{{item.file}}></a></td>
+            </tr>
+            {% endfor %}
+
+        </table>
+
+    {% else %}
+        <h2 style="text-align:center; color:red;">No submission in this Assignment yet</h2><br>
+        {% if ass.course %}
+        <div style="text-align:center"><a href="/project/ass_list/{{ass.course.slug}}"><button>go to  Assignment</button></a></div>
+        {% endif %}
+    {% endif %}
+
+
+
+
+{% endblock %}

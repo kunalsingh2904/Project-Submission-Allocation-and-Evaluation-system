@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Delete Assignment{% endblock %}
+{% block content %}
+
+<br><br>
+<h1 style="color:red;" align="center">Are you sure you want to delete this assignment?</h1>
+<h1 style="color:blue;" align="center">{{ass.title}}</h1><br>
+<form method="post" align="center"> {% csrf_token %}
+     <button type="submit" style="color:red;">Delete</button>
+</form><br>
+<div align="center"><a href="/project/view_ass/{{ass.slug}}"><button style="color:green">cancel</button></a></div>
+
+
+{% endblock %}
