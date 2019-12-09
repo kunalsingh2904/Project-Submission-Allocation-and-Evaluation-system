@@ -8,7 +8,8 @@ Colleges, Universities or any Educational Institutes conduct projects or give As
   3. Previous submission Module
   4. User Module
   5. Open project Module
-  6. Admin Module
+  6. Evaluation Module
+  7. Admin Module
  
 
 This Project will help in building a collaborative system for students as well as professor
