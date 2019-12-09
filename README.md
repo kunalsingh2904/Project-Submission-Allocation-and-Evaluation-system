@@ -31,11 +31,12 @@ generate a report for the academics and grading of the student.
   2. create another directory with name "Moodle_files" at same location of "moodel".
      You can change Moodle_files name if you want but you will have to change it in settings also.
      this directory is for file and image storage.
-  3. go to moodle 
-  4. run following command:
+  3. go to moodle/Moodel/settings.py and give your email-id and password at required place
+  4. go to moodle 
+  5. run following command:
       1. python manage.py makemigrations
       2. python manage.py migrate
       3. python manage.py createsuperuser
       4. python manage.py runserver
-  5. open localhost on web browser.
+  6. open localhost on web browser.
       
