@@ -151,10 +151,10 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'help.bloghelp@gmail.com'   # help.bloghelp@gmail.com
-EMAIL_HOST_PASSWORD = 'help25blog*'     # help25blog*
+EMAIL_HOST_USER = "your_emailid"
+EMAIL_HOST_PASSWORD = "your_password"
 
 
-CURRENT_YEAR = '2019'
-CURRENT_SEM = 'spring'
+CURRENT_YEAR = '2019'    # current year
+CURRENT_SEM = 'spring'   # current semester
 
